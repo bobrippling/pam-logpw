@@ -1,0 +1,10 @@
+/var/log/pwattempts
+{
+	rotate 4
+	weekly
+	missingok
+	notifempty
+	compress
+	delaycompress
+	sharedscripts
+}

